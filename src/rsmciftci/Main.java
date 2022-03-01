@@ -1,29 +1,26 @@
 package rsmciftci;
 
-
-import rsmciftci.creationalpatterns.builder.first.User;
-import rsmciftci.creationalpatterns.builder.second.builder.CarBuilder;
-import rsmciftci.creationalpatterns.builder.second.builder.CarManualBuilder;
-import rsmciftci.creationalpatterns.builder.second.car.Car;
-import rsmciftci.creationalpatterns.builder.second.car.Manual;
-import rsmciftci.creationalpatterns.builder.second.director.Director;
+import rsmciftci.creationalpatterns.builder.third.OldRobotBuilder;
+import rsmciftci.creationalpatterns.builder.third.Robot;
+import rsmciftci.creationalpatterns.builder.third.RobotBuilder;
+import rsmciftci.creationalpatterns.builder.third.RobotEnginner;
 
 public class Main {
     public static void main(String[] args){
 
-        Director director = new Director();
+        RobotBuilder oldStyleRobot = new OldRobotBuilder();
 
-        CarManualBuilder manualBuilder = new CarManualBuilder();
-        director.constructSportsCar(manualBuilder);
-        Manual carManual = manualBuilder.getResult();
-        System.out.println(carManual.print());
+        RobotEnginner robotEnginner = new RobotEnginner(oldStyleRobot);
 
-        System.out.println("\n---------------------\n");
+        robotEnginner.makeRobot();
 
-        CarBuilder carBuilder = new CarBuilder();
-        director.constructSportsCar(carBuilder);
-        Car car = carBuilder.getResult();
-        System.out.println(car.print());
+        Robot robot = robotEnginner.getRobot();
+
+        System.out.println("Robot Built");
+        System.out.println("Head: "+robot.getRobotHead());
+        System.out.println("Arms: "+robot.getRobotArms());
+        System.out.println("Legs: "+robot.getRobotLegs());
+        System.out.println("Torso: "+robot.getRobotTorso());
 
 
     }
